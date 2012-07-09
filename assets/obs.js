@@ -374,7 +374,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				}
 				
 			// Load JSON info for image URLs and images 
-			$.getJSON('lib/json/'+ storyNum +'.json', function(data) {
+			$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
 				var items = [];
 				
 				// Loop through all image urls
