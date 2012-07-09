@@ -1,63 +1,100 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-	<head>
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width" />
-		<title>Training App</title>
-		<link rel="stylesheet" href="assets/css/master.css" type="text/css" media="screen" />
-		
-		<script src="phonegap.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/xui.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/LawnchairAdaptorHelpers.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/DOMStorageAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/adaptors/WebkitSQLiteAdaptor.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/lawnchair/Lawnchair.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/dsl.js" type="text/javascript" charset="utf-8"></script>
-		
-		<script src="assets/js/app.js" type="text/javascript" charset="utf-8"></script>
-		
-	</head>
-	<body>
- 		<div id="title_bar">Phone<strong>Gap</strong> Training App</div>
+<head>
+	<title>Open Bible Stories</title>
+	<meta name="author" content="Tim Jore" />
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link href="assets/obs.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="assets/obs.js"></script>
+</head>
+<body>
 
-		<div id="welcome" class="view">
-		  <div class="app_button" id="map_button">Show My Location</div>
-  	      <div class="app_button" id="settings_button">Settings</div>
-		</div>
+<div data-role="page" id="Home" class="galleryPage">
 
-		<div id="map" class="view">
-		  <div class="map_image">
-              <img id="static_map" src="assets/img/staticmap.png">
-		  </div>
-		  <p>This is where you are</p>
-		  <div class="app_button" id="welcome_button">Go Back</div>
-		</div>
+	<div data-role="header">
+		<h1>Open Bible Stories</h1>
+        <a href="#options" data-icon="gear" class="ui-btn-right" data-iconpos="notext">Options</a>
+	</div>
+	
+	
+	<div data-role="content" >	
+		
+		<p>Choose a story:</p>		
+		
+		<ol data-role="listview" data-inset="true" class="gallery" data-split-icon="plus">
+		
+			<li data-icon="check"><a rel="story1">The Creation</a></li>
+			<li data-icon="check"><a rel="story2">Sin Enters the World</a></li>
+			<li><a rel="story3">The Flood</a><a rel="download">Download</a></li>
+			<li><a rel="story4">God's Covenant with Abraham</a><a rel="download">Download</a></li>
+			<li><a rel="story5">The Forefathers</a><a rel="download">Download</a></li>
+			<li><a rel="story6">Moses and the Ten Plagues</a><a rel="download">Download</a></li>
+			<li><a rel="story7">God Frees Israel from Egypt</a><a rel="download">Download</a></li>
+			<li><a rel="story8">God's Covenant with Israel</a><a rel="download">Download</a></li>
+			<li><a rel="story9">The Promised Land</a><a rel="download">Download</a></li>
+			<li><a rel="story10">The Deliverers</a><a rel="download">Download</a></li>
+			<li><a rel="story11">God's Covenant with David</a><a rel="download">Download</a></li>
+			<li><a rel="story12">The Divided Kingdom</a><a rel="download">Download</a></li>
+			<li><a rel="story13">The Exile and Return</a><a rel="download">Download</a></li>
+			<li><a rel="story14">The Prophets</a><a rel="download">Download</a></li>
+			<li><a rel="story15">The Birth of Jesus</a><a rel="download">Download</a></li>
+			<li><a rel="story16">John Baptizes Jesus</a><a rel="download">Download</a></li>
+			<li><a rel="story17">The Good Samaritan</a><a rel="download">Download</a></li>
+			<li><a rel="story18">Jesus Walks on the Water</a><a rel="download">Download</a></li>
+			<li><a rel="story19">Jesus Heals a Demon-Possessed Man</a><a rel="download">Download</a></li>
+			<li><a rel="story20">Jesus Feeds 5,000 People</a><a rel="download">Download</a></li>
+			<li><a rel="story21">The Story of the Farmer</a><a rel="download">Download</a></li>
+			<li><a rel="story22">The Compassionate Father</a><a rel="download">Download</a></li>
+			<li><a rel="story23">Jesus Raises Lazarus from the Dead</a><a rel="download">Download</a></li>
+			<li><a rel="story24">Jesus' Betrayal</a><a rel="download">Download</a></li>
+			<li><a rel="story25">Jesus' Crucifixion</a><a rel="download">Download</a></li>
+			<li><a rel="story26">Jesus' Resurrection</a><a rel="download">Download</a></li>
+			<li><a rel="story27">The Beginning of the Church</a><a rel="download">Download</a></li>
+			<li><a rel="story28">The Growth of the Church</a><a rel="download">Download</a></li>
+			<li><a rel="story29">God's New Covenant</a><a rel="download">Download</a></li>
+			<li><a rel="story30">Jesus' Return</a><a rel="download">Download</a></li>
+			
+		</ol> 
+		
+	</div>
 
-		<div id="settings" class="view">
-		  <form id="settings_form">
-		    <fieldset>
-		      <legend>Map Type</legend>
-			  <input type="radio" name="map" value="roadmap" checked>Road Map<br/>
-		      <input type="radio" name="map" value="satellite">Satellite<br/>
-		      <input type="radio" name="map" value="terrain">Terrain<br/>
-		      <input type="radio" name="map" value="hybrid">Hybrid<br/>
-		    </fieldset>
-		    <fieldset>
-		      <legend>Zoom Level</legend>
-  		      <input type="radio" name="zoom" value="10">Super Far<br/>
-  		      <input type="radio" name="zoom" value="12">Far<br/>
-  		      <input type="radio" name="zoom" value="15" checked>Normal<br/>
-  		      <input type="radio" name="zoom" value="18">Close<br/>
-  		      <input type="radio" name="zoom" value="20">Super Close<br/>
-  		     </fieldset>
-		      <button id="save_button">Save</button>
-	      </form>
-		</div>
+	<div data-role="footer">
+		<h4><a href="#options"><img src="lib/images/cc-by-sa-88x31.png" /></a></h4>
+	</div>
 
-	</body>
+</div>
+
+
+
+<div data-role="page" data-add-back-btn="true" id="options" class="gallery-page">
+
+	<div data-role="header">
+		<h1>Options</h1>
+	</div>
+
+	<div data-role="content">	
+    	<h2>Text size</h2>
+        
+        
+        <h2>Download all images</h2>
+        
+        
+        <h2>Download High Definition Images</h2>
+        
+		
+		<h2>About</h2>
+        
+        <p>About the app and credits for creators</p>
+		
+	</div>
+	
+	<div data-role="footer">
+		<h4><a href="#options"><img src="lib/images/cc-by-sa-88x31.png" /></a></h4>
+	</div>
+	
+</div>
+
+
+</body>
 </html>
