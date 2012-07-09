@@ -383,7 +383,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				
 				// Download all other stuff
 				var fileTransfer = new FileTransfer(),
-					url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-1.jpg';
+					url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-01.jpg';
 					filePath = 'assets/images/'+ storyNumber;
 
 				fileTransfer.download(
