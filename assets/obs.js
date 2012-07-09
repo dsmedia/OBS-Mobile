@@ -377,6 +377,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				$(this).fadeOut();
 				
 				// Download all other stuff
+				
 			}
 			else {	
 				// Load JSON info for image URLs and images 
