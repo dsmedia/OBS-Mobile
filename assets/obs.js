@@ -360,78 +360,65 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
-			
-		
-			
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();					
 			
 			var storyNum = $(this).attr('rel'),
 				storyNumber = storyNum.replace('story','');
 				storyBigNumber = (storyNumber);
-				if(Number(storyBigNumber) <= 9) {
-					storyBigNumber = ('0'+ storyNumber);
-				}
+			
+			if(Number(storyBigNumber) <= 9) {
+				storyBigNumber = ('0'+ storyNumber);
+			};
+			
+			if ($(this).attr('rel') == 'download'){
+				$.mobile.showPageLoadingMsg();
+				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
+				$(this).fadeOut();
 				
-			// Load JSON info for image URLs and images 
-			$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
-				var items = [];
-				
-				// Loop through all image urls
-				$.each(data, function(key, val) {
-					items.push({url:'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
-				});
-				
-				itemsSorted = (items.sort(function(a,b){
-					return a.num-b.num;})); 
-				
-				var options = {
-					preventHide: false,
-					getImageSource: function(obj){
-						return obj.url;
-					},
-					getImageCaption: function(obj){			
-						$('div.ps-toolbar-content').prependTo('body');
-						$('.ps-toolbar-top').remove();
-						return $('<div/>').html(obj.caption).text(); 
-					},
-					captionAndToolbarFlipPosition: true, 
-					captionAndToolbarShowEmptyCaptions: false,
-					captionAndToolbarAutoHideDelay: 0,
-					loop: false,
-						/*,getImageCaption: function(el){
-									return $(el).parent('li').find('div.obs_text').html(); 
-						},*/
-						
-					},
-					instance = PhotoSwipe.attach( itemsSorted, 
-						options 
-					);					
-					instance.show(0);
+				// Download all other stuff
+			}
+			else {	
+				// Load JSON info for image URLs and images 
+				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
+					var items = [];
 					
-					
-					$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
-					$('.ps-toolbar-close').live('click',function(){
-						$('.ps-toolbar-close').remove();
-						document.location.href = 'index.html';
+					// Loop through all image urls
+					$.each(data, function(key, val) {
+						items.push({url:'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
-								
-					/*$('.ps-toolbar-close').fadeTo(3000,'0.0')
-						.attr('id','noShowClose')
-						.live('click',function(){
+					
+					itemsSorted = (items.sort(function(a,b){
+						return a.num-b.num;})); 
+					
+					var options = {
+						preventHide: false,
+						getImageSource: function(obj){
+							return obj.url;
+						},
+						getImageCaption: function(obj){			
+							$('div.ps-toolbar-content').prependTo('body');
+							$('.ps-toolbar-top').remove();
+							return $('<div/>').html(obj.caption).text(); 
+						},
+						captionAndToolbarFlipPosition: true, 
+						captionAndToolbarShowEmptyCaptions: false,
+						captionAndToolbarAutoHideDelay: 0,
+						loop: false
+						},
+						instance = PhotoSwipe.attach( itemsSorted, 
+							options 
+						);					
+						instance.show(0);
+						
+						
+						$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
+						$('.ps-toolbar-close').live('click',function(){
 							$('.ps-toolbar-close').remove();
 							document.location.href = 'index.html';
+						});
 					});
-					$('div.ps-uilayer').live('click', function(){
-						//.addClass('noShowClose');
-						if($('.ps-toolbar-close#noShowClose')){
-							$('.ps-toolbar-close').fadeTo(1000,'1.0').attr('id','');
-						}
-						else {
-							$('.ps-toolbar-close').fadeTo(0,'0.0').attr('id','noShowClose');
-						}
-					});*/
-				});
+				};
 			});
 		});
 }(window, window.jQuery, window.Code.PhotoSwipe));
