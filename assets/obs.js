@@ -381,23 +381,36 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				
-				// Download all other stuff
-				var fileTransfer = new FileTransfer(),
-					url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-01.jpg';
-					filePath = 'assets/images/'+ storyNumber;
+				getEmAll = function(storyNumber, storyBigNumber, picNumber){
+				
+					// Download all other stuff
+					var fileTransfer = new FileTransfer(),
+						url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
+						filePath = 'assets/images/'+ storyNumber;
 
-				fileTransfer.download(
-					url,
-					filePath,
-					function(entry) {
-						console.log("download complete: " + entry.fullPath);
-					},
-					function(error) {
-						console.log("download error source " + error.source);
-						console.log("download error target " + error.target);
-						console.log("upload error code" + error.code);
-					}
-				);
+					fileTransfer.download(
+						url,
+						filePath,
+						function(entry) {
+							console.log("download complete: " + entry.fullPath);
+						},
+						function(error) {
+							console.log("download error source " + error.source);
+							console.log("download error target " + error.target);
+							console.log("upload error code" + error.code);
+						}
+					);
+				};
+				
+				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
+					var items = [];
+					
+					// Loop through all image urls
+					$.each(data, function(key, val) {						
+						getEmAll(storyNumber, storyBigNumber, key);
+					});
+				});
+				
 			}
 			else {	
 				// Load JSON info for image URLs and images 
