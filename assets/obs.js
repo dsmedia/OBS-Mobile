@@ -372,7 +372,8 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 			};
 			
 			if ($(this).attr('rel') == 'download'){
-				$.mobile.showPageLoadingMsg();
+				//$.mobile.showPageLoadingMsg();
+				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				
@@ -386,7 +387,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
-						items.push({url:'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
+						items.push({url:'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
 					
 					itemsSorted = (items.sort(function(a,b){
