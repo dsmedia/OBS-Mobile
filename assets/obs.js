@@ -358,6 +358,10 @@ target:this})},onToolbarBeforeHide:function(){a.Events.fire(this,{type:h.EventTy
 window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Code.PhotoSwipe.Toolbar,window.Code.PhotoSwipe.UILayer,window.Code.PhotoSwipe.ZoomPanRotate);
 
 
+
+
+
+
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		$('.gallery a').live('click', function(e){
@@ -378,7 +382,22 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				$(this).fadeOut();
 				
 				// Download all other stuff
-				
+				var fileTransfer = new FileTransfer(),
+					url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-1.jpg';
+					filePath = 'assets/images/'+ storyNumber;
+
+				fileTransfer.download(
+					url,
+					filePath,
+					function(entry) {
+						console.log("download complete: " + entry.fullPath);
+					},
+					function(error) {
+						console.log("download error source " + error.source);
+						console.log("download error target " + error.target);
+						console.log("upload error code" + error.code);
+					}
+				);
 			}
 			else {	
 				// Load JSON info for image URLs and images 
@@ -387,7 +406,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
-						items.push({url:'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
+						items.push({url:'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
 					
 					itemsSorted = (items.sort(function(a,b){
