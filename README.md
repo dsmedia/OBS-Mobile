@@ -1,6 +1,4 @@
-PhoneGap-Start
+OBS-Mobile
 ---
 
-A starting point for PhoneGap apps.
-
-To get started: fork this repo, modify the config.xml to match your details, and get building!
+A visual mini-Bible in text, audio and video formats, in every language of the world.
