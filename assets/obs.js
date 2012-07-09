@@ -375,7 +375,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				storyBigNumber = ('0'+ storyNumber);
 			};
 			
-			if ($(this).attr('rel') == 'download'){
+			if ($(this).attr('data-download') == 'download'){
 				//$.mobile.showPageLoadingMsg();
 				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
