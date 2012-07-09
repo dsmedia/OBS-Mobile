@@ -4,15 +4,15 @@
 	id		= "com.phonegap.getting.started"
 	version 	= "1.0.0">
 
-	<name>PhoneGap: Getting Started</name>
+	<name>Open Bible Stories</name>
 
 	<description>
-		A template for getting started with PhoneGap development and build.phonegap.com
+		A visual mini-Bible in text, audio and video formats, in every language of the world.
 	</description>
 
-	<author href="http://alunny.github.com"
-		email="andrew.lunny@nitobi.com">
-		Andrew Lunny
+	<author href="http://bob.wadholm.com"
+		email="rwadholm@indiana.edu">
+		Bob Wadholm
 	</author>
 
 	<icon src="icon.png" gap:role="default" />
@@ -20,5 +20,5 @@
 	<feature name="http://api.phonegap.com/1.0/geolocation"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
 
-	<preference name="orientation" value="portrait" />
+	<preference name="orientation" value="landscape" />
 </widget>
