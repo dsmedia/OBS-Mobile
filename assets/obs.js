@@ -366,7 +366,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 	$('#Home').live('pageinit',function(event){
 		
 		localSystem = [];
-		localSystem = window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
 fail); 	
 					
 		function fail(evt) {
