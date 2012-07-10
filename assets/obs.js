@@ -365,6 +365,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
+		localSystem = [];
 		localSystem = window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
 fail); 	
 					
@@ -379,7 +380,7 @@ fail);
 			dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
 		} 
 		function onSuccessTest(parent) {
-			return parent;
+			localSystem = parent;
 		}
 				
 		function onFailTest(){ 
