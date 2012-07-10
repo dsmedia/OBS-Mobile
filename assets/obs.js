@@ -386,7 +386,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 					// Download all other stuff
 					var fileTransfer = new FileTransfer(),
 						url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
-						filePath = 'file:///android_asset/www/assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
+						filePath = 'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
 
 					fileTransfer.download(
 						url,
