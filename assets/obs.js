@@ -385,8 +385,8 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				
 					// Download all other stuff
 					var fileTransfer = new FileTransfer(),
-						url = 'http://bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
-						filePath = 'assets/images/'+ storyNumber +'/';
+						url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
+						filePath = 'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
 
 					fileTransfer.download(
 						url,
@@ -397,7 +397,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 						function(error) {
 							console.log("download error source " + error.source);
 							console.log("download error target " + error.target);
-							console.log("Download error code" + error.code);
+							console.log("upload error code" + error.code);
 						}
 					);
 				};

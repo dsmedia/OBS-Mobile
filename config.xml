@@ -23,5 +23,5 @@
 	<preference name="orientation" value="landscape" />
 	<preference name="fullscreen" value="true" />
 	
-	<access origin="http://wadholm.com" subdomains="true" />
+	<access origin="http://www.wadholm.com" subdomains="true" />
 </widget>
