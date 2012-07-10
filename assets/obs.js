@@ -365,15 +365,12 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 	$('#Home').live('pageinit',function(event){
 		
 		console.log('pageLoaded');
-		document.addEventListener("deviceready", onDeviceReady, false); 
 
 		localSystemPath = [];
-			
-		function onDeviceReady() {
-			console.log('device is ready'); 
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-			fail); 
-		}
+		
+		console.log('device is ready'); 
+		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+		fail); 
 					
 		function fail(evt) {
 			console.log(evt.target.error.code);
