@@ -380,7 +380,10 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				getEmAll = function(storyNumber, storyBigNumber, picNumber){
 				
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-null); 		
+noFileSystem); 	
+					function noFileSystem(){
+						console.log('bummer');
+					}
 				
 					var storyNum = $(this).attr('rel'),
 						storyNumber = storyNum.replace('story','');
@@ -390,8 +393,7 @@ null);
 						console.log(fileSystem.name); 
 						console.log(fileSystem.root.name); 
 						// Get the data directory, creating it if it doesn't exist.
-						dataDir = 
-						fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
+						dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
 					}  
 				 	// called when directory has been succesful got or created 
 					function onSuccessTest(parent){ 
