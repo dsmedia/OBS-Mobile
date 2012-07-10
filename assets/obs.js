@@ -367,15 +367,20 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();					
 			
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0);
-			
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+null); 		
 				
 			var storyNum = $(this).attr('rel'),
 				storyNumber = storyNum.replace('story','');
 				storyBigNumber = (storyNumber);
 			
-			fileSystem.root.getDirectory("data/", {create: 
-true},onSuccessTest, onFailTest); 
+			 function gotPath(fileSystem) { 
+				console.log(fileSystem.name); 
+				console.log(fileSystem.root.name); 
+				// Get the data directory, creating it if it doesn't exist.
+				dataDir = 
+				fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
+			}  
 				
 				
 			if(Number(storyBigNumber) <= 9) {
