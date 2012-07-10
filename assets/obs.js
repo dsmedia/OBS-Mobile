@@ -366,7 +366,10 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 	$('#Home').live('pageinit',function(event){
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();	
-				
+			
+			var storyNum = $(this).attr('rel'),
+						storyNumber = storyNum.replace('story','');
+						storyBigNumber = (storyNumber);	
 			if(Number(storyBigNumber) <= 9) {
 				storyBigNumber = ('0'+ storyNumber);
 			};
@@ -379,9 +382,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				
 				getEmAll = function(storyNumber, storyBigNumber, picNumber){
 				
-					var storyNum = $(this).attr('rel'),
-						storyNumber = storyNum.replace('story','');
-						storyBigNumber = (storyNumber);
+					
 						
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
 fail); 	
