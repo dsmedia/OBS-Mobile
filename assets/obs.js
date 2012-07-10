@@ -366,7 +366,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 		
 		console.log('pageLoaded');
 
-		localSystemPath = [];
+		var localSystemPath = [];
 		
 		console.log('device is ready'); 
 		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
@@ -391,6 +391,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				console.log("Error message"); 
 		} 
 		 
+		console.log(localSystem);
 		
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();	
