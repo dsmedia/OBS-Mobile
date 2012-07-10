@@ -364,6 +364,31 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
+		
+		localImagePath = '';
+		localSystem = window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+fail); 	
+					
+		function fail(evt) {
+			console.log(evt.target.error.code);
+		}
+		
+		function gotPath(fileSystem) { 
+			//console.log(fileSystem.name); 
+			//console.log(fileSystem.root.name); 
+			// Get the data directory, creating it if it doesn't exist.
+			dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
+		} 
+		function onSuccessTest(parent) {
+			localImagePath = parent;
+			return parent;
+		}
+				
+		function onFailTest(){ 
+				console.log("Error message"); 
+		} 
+		 
+		
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();	
 			
@@ -375,43 +400,25 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 			};
 			
 			if ($(this).attr('data-download') == 'download'){
-				//$.mobile.showPageLoadingMsg();
+				$.mobile.showPageLoadingMsg();
 				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				
-				getEmAll = function(storyNumber, storyBigNumber, picNumber){
-				
-					
+				getEmAll = function(storyNumber, storyBigNumber, picNumber){					
 						
-					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-fail); 	
 					
-					function fail(evt) {
-						console.log('made it to fail');
-						console.log(evt.target.error.code);
-					}
-					
-					function gotPath(fileSystem) { 
-						console.log('made it to gotPath');
-						console.log(fileSystem.name); 
-						console.log(fileSystem.root.name); 
-						// Get the data directory, creating it if it doesn't exist.
-						dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
-					}  
 				 	// called when directory has been succesful got or created 
-					function onSuccessTest(parent){ 
 					
-						console.log('made it to onSuccessTest');
-							console.log("Parent Name: " + parent.name); 
-							// file creation 
-						 lockFile = parent.getFile('OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg', {create: true}, succ, failCF); 
+						//console.log("Parent Name: " + parent.name); 
+					// file creation 
+					localSystem.getFile('OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg', {create: true}, succ, failCF); 
 				
-					} 
+					
 
 					// called when file has been successfully created 
 					function succ(file){ 
-						console.log("toto"+ file.fullPath); 
+						//console.log("toto"+ file.fullPath); 
 						// in order to remove the "file:/" start 
 						filePath=file.fullPath.substr(6); 
 						console.log(filePath); 
@@ -433,10 +440,6 @@ fail);
 				
 					function failCF(){ 
 							console.log("File creation error"); 
-					} 
-				
-					function onFailTest(){ 
-							console.log("Error message"); 
 					} 
 					
 					// Download all other stuff
@@ -465,6 +468,8 @@ fail);
 					$.each(data, function(key, val) {						
 						getEmAll(storyNumber, storyBigNumber, key);
 					});
+					
+					$.mobile.hidePageLoadingMsg();
 				});
 			}
 			else {	
@@ -472,9 +477,11 @@ fail);
 				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
 					var items = [];
 					
+					
+					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
-						items.push({url:'assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
+						items.push({url:localImagePath.fullPath.substr(6) +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
 					
 					itemsSorted = (items.sort(function(a,b){
