@@ -379,15 +379,20 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				
 				getEmAll = function(storyNumber, storyBigNumber, picNumber){
 				
-					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-null); 	
-					
-				
 					var storyNum = $(this).attr('rel'),
 						storyNumber = storyNum.replace('story','');
 						storyBigNumber = (storyNumber);
+						
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+fail); 	
 					
-					 function gotPath(fileSystem) { 
+					function fail(evt) {
+						console.log('made it to fail');
+						console.log(evt.target.error.code);
+					}
+					
+					function gotPath(fileSystem) { 
+						console.log('made it to gotPath');
 						console.log(fileSystem.name); 
 						console.log(fileSystem.root.name); 
 						// Get the data directory, creating it if it doesn't exist.
@@ -395,6 +400,8 @@ null);
 					}  
 				 	// called when directory has been succesful got or created 
 					function onSuccessTest(parent){ 
+					
+						console.log('made it to onSuccessTest');
 							console.log("Parent Name: " + parent.name); 
 							// file creation 
 						 lockFile = parent.getFile('OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg', {create: true}, succ, failCF); 
@@ -420,7 +427,7 @@ null);
 									 console.log("download error target " + error.target); 
 									 console.log("upload error code" + error.code); 
 								 } 
-							 ); 
+							); 
 					} 
 				
 					function failCF(){ 
