@@ -358,28 +358,35 @@ target:this})},onToolbarBeforeHide:function(){a.Events.fire(this,{type:h.EventTy
 window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Code.PhotoSwipe.Toolbar,window.Code.PhotoSwipe.UILayer,window.Code.PhotoSwipe.ZoomPanRotate);
 
 
-
   
 
 
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
-		localSystem = [];
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-fail); 	
+		console.log('pageLoaded');
+		document.addEventListener("deviceready", onDeviceReady, false); 
+
+		localSystemPath = [];
+			
+		function onDeviceReady() {
+			console.log('device is ready'); 
+			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+			fail); 
+		}
 					
 		function fail(evt) {
 			console.log(evt.target.error.code);
 		}
 		
 		function gotPath(fileSystem) { 
-			//console.log(fileSystem.name); 
-			//console.log(fileSystem.root.name); 
+			console.log(fileSystem.name); 
+			console.log(fileSystem.root.name); 
 			// Get the data directory, creating it if it doesn't exist.
 			dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
 		} 
 		function onSuccessTest(parent) {
+			console.log(parent);
 			localSystem = parent;
 		}
 				
@@ -399,7 +406,7 @@ fail);
 			};
 			
 			if ($(this).attr('data-download') == 'download'){
-				$.mobile.showPageLoadingMsg();
+				//$.mobile.showPageLoadingMsg();
 				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
@@ -411,7 +418,7 @@ fail);
 					
 						//console.log("Parent Name: " + parent.name); 
 					// file creation 
-					localSystem.getFile('OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg', {create: true}, succ, failCF); 
+					localSystemPath.getFile('OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg', {create: true}, succ, failCF); 
 				
 					
 
@@ -468,7 +475,7 @@ fail);
 						getEmAll(storyNumber, storyBigNumber, key);
 					});
 					
-					$.mobile.hidePageLoadingMsg();
+					//$.mobile.hidePageLoadingMsg();
 				});
 			}
 			else {	
@@ -476,7 +483,7 @@ fail);
 				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
 					var items = [];
 					
-					pathToFiles = localSystem.fullPath.substr(6);
+					pathToFiles = localSystemPath.fullPath.substr(6);
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
