@@ -380,10 +380,8 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				getEmAll = function(storyNumber, storyBigNumber, picNumber){
 				
 					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-noFileSystem); 	
-					function noFileSystem(){
-						console.log('bummer');
-					}
+null); 	
+					
 				
 					var storyNum = $(this).attr('rel'),
 						storyNumber = storyNum.replace('story','');
