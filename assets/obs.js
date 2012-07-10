@@ -365,7 +365,6 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
-		localImagePath = '';
 		localSystem = window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
 fail); 	
 					
@@ -380,7 +379,6 @@ fail);
 			dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
 		} 
 		function onSuccessTest(parent) {
-			localImagePath = parent;
 			return parent;
 		}
 				
@@ -477,7 +475,7 @@ fail);
 				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
 					var items = [];
 					
-					pathToFiles = localImagePath.fullPath.substr(6);
+					pathToFiles = localSystem.fullPath.substr(6);
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
