@@ -365,23 +365,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		$('.gallery a').live('click', function(e){
-			e.preventDefault();					
-			
-			window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-null); 		
-				
-			var storyNum = $(this).attr('rel'),
-				storyNumber = storyNum.replace('story','');
-				storyBigNumber = (storyNumber);
-			
-			 function gotPath(fileSystem) { 
-				console.log(fileSystem.name); 
-				console.log(fileSystem.root.name); 
-				// Get the data directory, creating it if it doesn't exist.
-				dataDir = 
-				fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
-			}  
-				
+			e.preventDefault();	
 				
 			if(Number(storyBigNumber) <= 9) {
 				storyBigNumber = ('0'+ storyNumber);
@@ -395,7 +379,20 @@ null);
 				
 				getEmAll = function(storyNumber, storyBigNumber, picNumber){
 				
+					window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
+null); 		
+				
+					var storyNum = $(this).attr('rel'),
+						storyNumber = storyNum.replace('story','');
+						storyBigNumber = (storyNumber);
 					
+					 function gotPath(fileSystem) { 
+						console.log(fileSystem.name); 
+						console.log(fileSystem.root.name); 
+						// Get the data directory, creating it if it doesn't exist.
+						dataDir = 
+						fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
+					}  
 				 	// called when directory has been succesful got or created 
 					function onSuccessTest(parent){ 
 							console.log("Parent Name: " + parent.name); 
