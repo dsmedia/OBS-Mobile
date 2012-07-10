@@ -477,11 +477,13 @@ fail);
 				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
 					var items = [];
 					
-					
+					pathToFiles = localImagePath.fullPath.substr(6);
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
-						items.push({url:localImagePath.fullPath.substr(6) +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
+						 
+						console.log(pathToFiles); 
+						items.push({url: pathToFiles +'OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
 					
 					itemsSorted = (items.sort(function(a,b){
