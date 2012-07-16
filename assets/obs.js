@@ -409,16 +409,15 @@ function onFailTest(){
 					$.ajax({
 						url: pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg',
 						type:'HEAD',
+						async: false,
 						error: function()
 						{
 							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
 						},
 						success: function()
 						{
-							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');
-							downloadBtn = $('.gallery li.story'+ storyIter).find('a[data-download="download"]');
-							
-							$(downloadBtn).remove();	
+							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');				
+							$('.gallery li.story'+ storyIter).find('a[data-download="download"]').remove();	
 							$('.gallery li.story'+ storyIter).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
 					});
