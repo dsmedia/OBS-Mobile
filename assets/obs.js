@@ -387,15 +387,12 @@ function onFailTest(){
 		 
 		
 (function(window, $, PhotoSwipe){			
-	$('#Home').live('pageinit',function(event){
-		
-		
- 		
-		
+	$('#Home').live('pageinit',function(event){		
 			
 		var tid = setInterval(checkDownload, 3000);
 		
 		function checkDownload() {
+			console.log('downloaded');
 			if(systemReady == true){			
 				clearInterval(tid);
 				// Cycle through links to ensure they have been downloaded already
@@ -418,7 +415,7 @@ function onFailTest(){
 						},
 						success: function()
 						{
-							downloadBtn = $('.gallery li a[rel="story'+ storyIter +'"][data-download="download"]');
+							downloadBtn = $('.gallery li a').attr({'rel':'story'+ storyIter , 'data-download': 'download'});
 							$(downloadBtn).remove();	
 							$('.gallery li a[rel="story'+ storyIter +'"]').parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
