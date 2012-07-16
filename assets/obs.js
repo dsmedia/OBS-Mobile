@@ -376,6 +376,7 @@ function gotPath(fileSystem) {
 
 function onSuccessTest(parent) {
 	localSystemPath = parent;
+	console.log('Filesystem available');
 }
 		
 function onFailTest(){ 
@@ -388,7 +389,7 @@ function onFailTest(){
 		
 		pathToFiles = localSystemPath.fullPath.substr(6);
  		
-		function checkDownloads(){
+		/*function checkDownloads(){
 			var storyIter = 1;	
 			// Cycle through links to ensure they have been downloaded already
 			while(storyIter <= 30){
@@ -415,7 +416,7 @@ function onFailTest(){
 					}
 				});
 			}
-		};
+		};*/
 		
 		//checkDownloads();
 			
