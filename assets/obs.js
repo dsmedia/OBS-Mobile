@@ -391,6 +391,8 @@ function onFailTest(){
 			
 		var tid = setInterval(checkDownload, 3000);
 		
+		$('li').css('opacity','0.0');
+		
 		function checkDownload() {
 			console.log('downloaded');
 			if(gapSystemReady == true){			
@@ -415,10 +417,10 @@ function onFailTest(){
 						success: function()
 						{
 							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');
-							downloadBtn = $('.gallery li a').attr({'rel':'story'+ storyIter , 'data-download': 'download'});
+							downloadBtn = $('.gallery li a[data-download="download"]').attr('rel','story'+ storyIter);
 							downloadBtnParent = $(downloadBtn).parent();
 							$(downloadBtn).remove();	
-							$(downloadBtnParent).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
+							$(downloadBtnParent).fadeIn.find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
 					});
 				}  
