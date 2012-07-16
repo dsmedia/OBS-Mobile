@@ -359,6 +359,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 
 
 var localSystemPath = [];
+systemReady = false;
   
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -377,10 +378,11 @@ function gotPath(fileSystem) {
 function onSuccessTest(parent) {
 	localSystemPath = parent;
 	console.log('Filesystem available');
+	systemReady = true;
 }
 		
 function onFailTest(){ 
-		console.log("No Filesystem available for saving files"); 
+	console.log("No Filesystem available for saving files"); 
 } 
 		 
 		
@@ -389,39 +391,42 @@ function onFailTest(){
 		
 		
  		
-		function checkDownloads(){
-			
-			pathToFiles = localSystemPath.fullPath.substr(6);
-			var storyIter = 1;	
-			// Cycle through links to ensure they have been downloaded already
-			while(storyIter <= 30){
-				
-				storyBigIter = storyIter;
-				
-				if(Number(storyBigIter) <= 9) {
-					storyBigIter = ('0'+ storyIter);
-				};
-				
-				$.ajax({
-					url: pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg',
-					type:'HEAD',
-					error: function()
-					{
-						console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
-						storyIter + 1;
-					},
-					success: function()
-					{
-						downloadBtn = $('.gallery li a[rel="story'+ storyIter +'"][data-download="download"]');
-						$(downloadBtn).remove();	
-						$('.gallery li a[rel="story'+ storyIter +'"]').parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');		
-						storyIter + 1;
-					}
-				});
-			}
-		};
 		
-		checkDownloads();
+			
+		var tid = setInterval(checkDownload, 3000);
+		
+		function checkDownload() {
+			if(systemReady == true){			
+				clearInterval(tid);
+				// Cycle through links to ensure they have been downloaded already
+				for(storyIter = 1; storyIter <= 30; storyIter++){
+					
+					storyBigIter = storyIter;
+					
+					if(Number(storyBigIter) <= 9) {
+						storyBigIter = ('0'+ storyIter);
+					};
+					pathToFiles = localSystemPath.fullPath.substr(6);
+					console.log(pathToFiles);
+					
+					$.ajax({
+						url: pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg',
+						type:'HEAD',
+						error: function()
+						{
+							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
+						},
+						success: function()
+						{
+							downloadBtn = $('.gallery li a[rel="story'+ storyIter +'"][data-download="download"]');
+							$(downloadBtn).remove();	
+							$('.gallery li a[rel="story'+ storyIter +'"]').parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
+						}
+					});
+				}  
+			}
+		}
+		
 			
 		
 		$('.gallery a').live('click', function(e){
