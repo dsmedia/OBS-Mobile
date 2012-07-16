@@ -398,7 +398,6 @@ function onFailTest(){
 				// Cycle through links to ensure they have been downloaded already
 				for(var storyIter = 1; storyIter < 31; storyIter++){
 					
-					var storyBigIter = 0;
 					storyBigIter = storyIter;
 					
 					if(Number(storyBigIter) <= 9) {
@@ -417,10 +416,10 @@ function onFailTest(){
 						success: function()
 						{
 							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');
-							downloadBtn = $('.gallery li a[data-download="download"][rel="story'+ storyIter +'"');
-							downloadBtnParent = $(downloadBtn).parent();
+							downloadBtn = $('.gallery li.story'+ storyIter).find('a[data-download="download"]');
+							
 							$(downloadBtn).remove();	
-							$(downloadBtnParent).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
+							$('.gallery li.story'+ storyIter).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
 					});
 				}  
