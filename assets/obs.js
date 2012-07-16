@@ -387,9 +387,11 @@ function onFailTest(){
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
-		pathToFiles = localSystemPath.fullPath.substr(6);
+		
  		
 		/*function checkDownloads(){
+			
+			pathToFiles = localSystemPath.fullPath.substr(6);
 			var storyIter = 1;	
 			// Cycle through links to ensure they have been downloaded already
 			while(storyIter <= 30){
@@ -402,17 +404,18 @@ function onFailTest(){
 				
 				$.ajax({
 					url: pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg',
-					type:'GET',
+					type:'HEAD',
 					error: function()
 					{
 						console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
-						storyIter++;
+						storyIter + 1;
 					},
 					success: function()
 					{
-						$('.gallery li a.downloadBtn[rel="story'+ storyIter +'"]').remove();	
+						downloadBtn = $('.gallery li a[rel="story'+ storyIter +'"][data-download="download"]');
+						$(downloadBtn).remove();	
 						$('.gallery li a[rel="story'+ storyIter +'"]').parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');		
-						storyIter++;
+						storyIter + 1;
 					}
 				});
 			}
@@ -486,7 +489,7 @@ function onFailTest(){
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
-						 
+						pathToFiles = localSystemPath.fullPath.substr(6); 
 						console.log(pathToFiles); 
 						items.push({url: pathToFiles +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
