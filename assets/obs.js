@@ -357,41 +357,40 @@ b.timeStamp,this.settings.invertMouseWheel&&(c*=-1),c<0?this.next():c>0&&this.pr
 target:this})},onToolbarBeforeHide:function(){a.Events.fire(this,{type:h.EventTypes.onBeforeCaptionAndToolbarHide,target:this})},onToolbarHide:function(){a.Events.fire(this,{type:h.EventTypes.onCaptionAndToolbarHide,target:this})},onZoomPanRotateTransform:function(b){a.Events.fire(this,{target:this,type:h.EventTypes.onZoomPanRotateTransform,scale:b.scale,rotation:b.rotation,rotationDegs:b.rotationDegs,translateX:b.translateX,translateY:b.translateY})}})})(window,window.klass,window.Code.Util,window.Code.PhotoSwipe.Cache,
 window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Code.PhotoSwipe.Toolbar,window.Code.PhotoSwipe.UILayer,window.Code.PhotoSwipe.ZoomPanRotate);
 
-
+var localSystemPath = [];
   
+document.addEventListener("deviceready", onDeviceReady, false);
 
+function onDeviceReady() {
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, fail); 
+	console.log('device is ready');
+}		
+		
+function fail(evt) {
+	console.log(evt.target.error.code);
+}
+		
+function gotPath(fileSystem) { 
+	console.log(fileSystem.name); 
+	console.log(fileSystem.root.name); 
+	// Get the data directory, creating it if it doesn't exist.
+	dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
+} 
 
+function onSuccessTest(parent) {
+	console.log(parent);
+	localSystemPath = parent;
+}
+		
+function onFailTest(){ 
+		console.log("Error message"); 
+} 
+		 
+		console.log(localSystemPath);
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
-		console.log('pageLoaded');
-
-		var localSystemPath = [];
-		
-		console.log('device is ready'); 
-		window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, 
-		fail); 
-					
-		function fail(evt) {
-			console.log(evt.target.error.code);
-		}
-		
-		function gotPath(fileSystem) { 
-			console.log(fileSystem.name); 
-			console.log(fileSystem.root.name); 
-			// Get the data directory, creating it if it doesn't exist.
-			dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
-		} 
-		function onSuccessTest(parent) {
-			console.log(parent);
-			localSystemPath = parent;
-		}
-				
-		function onFailTest(){ 
-				console.log("Error message"); 
-		} 
-		 
-		console.log(localSystemPath);
+ 		console.log('pageLoaded');		
 		
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();	
