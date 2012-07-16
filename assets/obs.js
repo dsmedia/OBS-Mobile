@@ -390,7 +390,38 @@ function onFailTest(){
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
- 		console.log('pageLoaded');		
+ 		console.log('pageLoaded');	
+		
+		
+		
+		var storyIter = 1,
+		storyBigIter = storyIter;
+		
+		
+		// Cycle through links to ensure they have been downloaded already
+		while(storyIter <= 30){
+			
+			if(Number(storyBigIter) <= 9) {
+				storyBigIter = ('0'+ storyIter);
+			};
+			
+			pathToFiles = localSystemPath.fullPath.substr(6);
+			
+			$.ajax({
+				url: pathToFiles +'/OBS-'+ storyBigIter +'-1.jpg',
+				type:'HEAD',
+				error: function()
+				{
+					storyIter++;
+				},
+				success: function()
+				{	
+					$('.gallery li a.downloadBtn[rel="story'+ storyIter +'"]').remove().parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');			
+					storyIter++;
+				}
+			});
+		}
+			
 		
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();	
@@ -418,8 +449,8 @@ function onFailTest(){
 						// in order to remove the "file:/" start 
 						filePath=file.fullPath.substr(6); 
 						console.log(filePath); 
-						 var fileTransfer = new FileTransfer(); 
-						url = url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg'; 
+						var fileTransfer = new FileTransfer(); 
+						url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg'; 
 						fileTransfer.download( 
 							 url, 
 							 filePath, 
