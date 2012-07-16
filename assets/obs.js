@@ -389,7 +389,7 @@ function onFailTest(){
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
-		$('li').css('opacity':'0.0');	
+		$('li').css('opacity','0.0');	
 	
 		if(!localStorage.getItem('ui')){
 			$.getJSON('assets/json/uiDefault.json', function(trans) {
