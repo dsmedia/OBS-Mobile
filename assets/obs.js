@@ -387,7 +387,11 @@ function onFailTest(){
 		 
 		
 (function(window, $, PhotoSwipe){			
-	$('#Home').live('pageinit',function(event){		
+	$('#Home').live('pageinit',function(event){	
+	
+		$.getJSON('assets/json/uiEnglish.json', function(trans) {
+			$('#Home h1').text(trans.appTitle);
+		});
 			
 		var tid = setInterval(checkDownload, 3000);
 		
