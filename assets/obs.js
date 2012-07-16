@@ -386,7 +386,6 @@ function onFailTest(){
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
-		
 		pathToFiles = localSystemPath.fullPath.substr(6);
  		
 		function checkDownloads(){
@@ -418,7 +417,7 @@ function onFailTest(){
 			}
 		};
 		
-		checkDownloads();
+		//checkDownloads();
 			
 		
 		$('.gallery a').live('click', function(e){
