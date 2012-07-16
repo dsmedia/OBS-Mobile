@@ -387,11 +387,22 @@ function onFailTest(){
 		 
 		
 (function(window, $, PhotoSwipe){			
-	$('#Home').live('pageinit',function(event){	
+	$('#Home').live('pageinit',function(event){
+		
+		$('li').css('opacity':'0.0');	
 	
-		$.getJSON('assets/json/uiEnglish.json', function(trans) {
-			$('#Home h1').text(trans.appTitle);
-		});
+		if(!localStorage.getItem('ui')){
+			$.getJSON('assets/json/uiDefault.json', function(trans) {
+				localStorage.setItem('ui', JSON.stringify(trans));
+				console.log(trans);
+				uiTrans = JSON.parse(localStorage.getItem('ui'));
+				console.log(uiTrans);			
+			});
+		};
+		
+		uiTrans = JSON.parse(localStorage.getItem('ui'));
+		$('#Home h1').text(uiTrans.appTitle);
+		$('p.chooseStory').text(uiTrans.chooseStory);
 			
 		var tid = setInterval(checkDownload, 3000);
 		
@@ -416,11 +427,12 @@ function onFailTest(){
 						async: false,
 						error: function()
 						{
+							$('.gallery li.story'+ storyIter).fadeIn();
 							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
 						},
 						success: function()
 						{
-							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');				
+							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');					$('.gallery li.story'+ storyIter).fadeIn();
 							$('.gallery li.story'+ storyIter).find('a[data-download="download"]').remove();	
 							$('.gallery li.story'+ storyIter).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
