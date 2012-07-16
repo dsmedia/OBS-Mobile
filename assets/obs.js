@@ -391,8 +391,6 @@ function onFailTest(){
 			
 		var tid = setInterval(checkDownload, 3000);
 		
-		$('li').css('opacity','0.0');
-		
 		function checkDownload() {
 			console.log('downloaded');
 			if(gapSystemReady == true){			
@@ -420,7 +418,7 @@ function onFailTest(){
 							downloadBtn = $('.gallery li a[data-download="download"]').attr('rel','story'+ storyIter);
 							downloadBtnParent = $(downloadBtn).parent();
 							$(downloadBtn).remove();	
-							$(downloadBtnParent).fadeIn().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
+							$(downloadBtnParent).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
 					});
 				}  
