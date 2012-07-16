@@ -357,6 +357,7 @@ b.timeStamp,this.settings.invertMouseWheel&&(c*=-1),c<0?this.next():c>0&&this.pr
 target:this})},onToolbarBeforeHide:function(){a.Events.fire(this,{type:h.EventTypes.onBeforeCaptionAndToolbarHide,target:this})},onToolbarHide:function(){a.Events.fire(this,{type:h.EventTypes.onCaptionAndToolbarHide,target:this})},onZoomPanRotateTransform:function(b){a.Events.fire(this,{target:this,type:h.EventTypes.onZoomPanRotateTransform,scale:b.scale,rotation:b.rotation,rotationDegs:b.rotationDegs,translateX:b.translateX,translateY:b.translateY})}})})(window,window.klass,window.Code.Util,window.Code.PhotoSwipe.Cache,
 window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Code.PhotoSwipe.Toolbar,window.Code.PhotoSwipe.UILayer,window.Code.PhotoSwipe.ZoomPanRotate);
 
+
 var localSystemPath = [];
   
 document.addEventListener("deviceready", onDeviceReady, false);
@@ -373,7 +374,6 @@ function fail(evt) {
 function gotPath(fileSystem) { 
 	console.log(fileSystem.name); 
 	console.log(fileSystem.root.name); 
-	// Get the data directory, creating it if it doesn't exist.
 	dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
 } 
 
@@ -404,21 +404,13 @@ function onFailTest(){
 			};
 			
 			if ($(this).attr('data-download') == 'download'){
-				//$.mobile.showPageLoadingMsg();
 				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				
-				function getEmAll(storyNumber, storyBigNumber, picNumber){					
-						
-					
-				 	// called when directory has been succesful got or created 
-					
-						//console.log("Parent Name: " + parent.name); 
+				function getEmAll(storyNumber, storyBigNumber, picNumber){	
 					// file creation 
 					localSystemPath.getFile('OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg', {create: true}, succ, failCF); 
-				
-					
 
 					// called when file has been successfully created 
 					function succ(file){ 
@@ -427,42 +419,24 @@ function onFailTest(){
 						filePath=file.fullPath.substr(6); 
 						console.log(filePath); 
 						 var fileTransfer = new FileTransfer(); 
-							url = url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg'; 
-							fileTransfer.download( 
-								 url, 
-								 filePath, 
-								 function(entry) { 
-									 console.log("download complete: " + entry.fullPath); 
-								 }, 
-								 function(error) { 
-									 console.log("download error source " + error.source); 
-									 console.log("download error target " + error.target); 
-									 console.log("upload error code" + error.code); 
-								 } 
-							); 
+						url = url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg'; 
+						fileTransfer.download( 
+							 url, 
+							 filePath, 
+							 function(entry) { 
+								 console.log("download complete: " + entry.fullPath); 
+							 }, 
+							 function(error) { 
+								 console.log("download error source " + error.source); 
+								 console.log("download error target " + error.target); 
+								 console.log("upload error code" + error.code); 
+							 } 
+						); 
 					} 
 				
 					function failCF(){ 
-							console.log("File creation error"); 
+						console.log("File creation error"); 
 					} 
-					
-					// Download all other stuff
-					/*var fileTransfer = new FileTransfer(),
-						url = 'http://www.bob.wadholm.com/OBSremote/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
-						filePath = 'android_asset/www/assets/images/'+ storyNumber +'/OBS-'+ storyBigNumber +'-'+ picNumber +'.jpg';
-
-					fileTransfer.download(
-						url,
-						filePath,
-						function(entry) {
-							console.log("download complete: " + entry.fullPath);
-						},
-						function(error) {
-							console.log("download error source " + error.source);
-							console.log("download error target " + error.target);
-							console.log("upload error code" + error.code);
-						}
-					);*/
 				};
 				
 				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
@@ -487,7 +461,7 @@ function onFailTest(){
 					$.each(data, function(key, val) {
 						 
 						console.log(pathToFiles); 
-						items.push({url: pathToFiles +'OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
+						items.push({url: pathToFiles +'/OBS-'+ storyBigNumber +'-'+ key +'.jpg', caption: val, "num": key});
 					});
 					
 					itemsSorted = (items.sort(function(a,b){
@@ -512,7 +486,6 @@ function onFailTest(){
 							options 
 						);					
 						instance.show(0);
-						
 						
 						$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
 						$('.ps-toolbar-close').live('click',function(){
