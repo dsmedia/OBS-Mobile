@@ -400,7 +400,7 @@ function onFailTest(){
 			
 			$.ajax({
 				url: pathToFiles +'/OBS-'+ storyBigIter +'-1.jpg',
-				type:'HEAD',
+				type:'GET',
 				error: function()
 				{
 					storyIter++;
