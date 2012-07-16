@@ -384,21 +384,22 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 		} 
 		function onSuccessTest(parent) {
 			console.log(parent);
-			localSystem = parent;
+			localSystemPath = parent;
 		}
 				
 		function onFailTest(){ 
 				console.log("Error message"); 
 		} 
 		 
-		console.log(localSystem);
+		console.log(localSystemPath);
 		
 		$('.gallery a').live('click', function(e){
 			e.preventDefault();	
 			
 			var storyNum = $(this).attr('rel'),
-						storyNumber = storyNum.replace('story','');
-						storyBigNumber = (storyNumber);	
+			storyNumber = storyNum.replace('story','');
+			storyBigNumber = (storyNumber);	
+			
 			if(Number(storyBigNumber) <= 9) {
 				storyBigNumber = ('0'+ storyNumber);
 			};
@@ -409,7 +410,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				
-				getEmAll = function(storyNumber, storyBigNumber, picNumber){					
+				function getEmAll(storyNumber, storyBigNumber, picNumber){					
 						
 					
 				 	// called when directory has been succesful got or created 
