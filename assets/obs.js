@@ -389,7 +389,7 @@ function onFailTest(){
 		
 		
  		
-		/*function checkDownloads(){
+		function checkDownloads(){
 			
 			pathToFiles = localSystemPath.fullPath.substr(6);
 			var storyIter = 1;	
@@ -419,9 +419,9 @@ function onFailTest(){
 					}
 				});
 			}
-		};*/
+		};
 		
-		//checkDownloads();
+		checkDownloads();
 			
 		
 		$('.gallery a').live('click', function(e){
