@@ -359,7 +359,7 @@ window.Code.PhotoSwipe.DocumentOverlay,window.Code.PhotoSwipe.Carousel,window.Co
 
 
 var localSystemPath = [];
-systemReady = false;
+gapSystemReady = false;
   
 document.addEventListener("deviceready", onDeviceReady, false);
 
@@ -378,7 +378,7 @@ function gotPath(fileSystem) {
 function onSuccessTest(parent) {
 	localSystemPath = parent;
 	console.log('Filesystem available');
-	systemReady = true;
+	gapSystemReady = true;
 }
 		
 function onFailTest(){ 
@@ -393,18 +393,17 @@ function onFailTest(){
 		
 		function checkDownload() {
 			console.log('downloaded');
-			if(systemReady == true){			
+			if(gapSystemReady == true){			
 				clearInterval(tid);
 				// Cycle through links to ensure they have been downloaded already
-				for(storyIter = 1; storyIter <= 30; storyIter++){
+				for(var storyIter = 1; storyIter < 31; storyIter++){
 					
-					storyBigIter = storyIter;
+					var storyBigIter = storyIter;
 					
 					if(Number(storyBigIter) <= 9) {
 						storyBigIter = ('0'+ storyIter);
 					};
 					pathToFiles = localSystemPath.fullPath.substr(6);
-					console.log(pathToFiles);
 					
 					$.ajax({
 						url: pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg',
@@ -415,9 +414,11 @@ function onFailTest(){
 						},
 						success: function()
 						{
+							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg exists.');
 							downloadBtn = $('.gallery li a').attr({'rel':'story'+ storyIter , 'data-download': 'download'});
+							downloadBtnParent = $(downloadBtn).parent();
 							$(downloadBtn).remove();	
-							$('.gallery li a[rel="story'+ storyIter +'"]').parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
+							$(downloadBtnParent).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
 					});
 				}  
