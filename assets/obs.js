@@ -391,18 +391,17 @@ function onFailTest(){
 		
 		$('li').css('opacity','0.0');	
 	
-		if(!localStorage.getItem('ui')){
-			$.getJSON('assets/json/uiDefault.json', function(trans) {
-				localStorage.setItem('ui', JSON.stringify(trans));
-				console.log(trans);
-				uiTrans = JSON.parse(localStorage.getItem('ui'));
-				console.log(uiTrans);			
-			});
-		};
 		
-		uiTrans = JSON.parse(localStorage.getItem('ui'));
-		$('#Home h1').text(uiTrans.appTitle);
-		$('p.chooseStory').text(uiTrans.chooseStory);
+		$.getJSON('assets/json/uiDefault.json', function(trans) {
+			//localStorage.setItem('ui', JSON.stringify(trans));
+			console.log(trans);
+			//uiTrans = JSON.parse(localStorage.getItem('ui'));
+			//console.log(uiTrans);
+			//uiTrans = JSON.parse(localStorage.getItem('ui'));
+			uiTrans = JSON.parse(trans);
+			$('#Home h1').text(uiTrans.appTitle);
+			$('p.chooseStory').text(uiTrans.chooseStory);			
+		});		
 			
 		var tid = setInterval(checkDownload, 3000);
 		
