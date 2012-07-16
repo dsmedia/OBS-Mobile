@@ -363,8 +363,7 @@ var localSystemPath = [];
 document.addEventListener("deviceready", onDeviceReady, false);
 
 function onDeviceReady() {
-	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, fail); 
-	console.log('device is ready');
+	window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotPath, fail);
 }		
 		
 function fail(evt) {
@@ -372,34 +371,26 @@ function fail(evt) {
 }
 		
 function gotPath(fileSystem) { 
-	console.log(fileSystem.name); 
-	console.log(fileSystem.root.name); 
 	dataDir = fileSystem.root.getDirectory("data/OBS", {create:true},onSuccessTest, onFailTest); 
 } 
 
 function onSuccessTest(parent) {
-	console.log(parent);
 	localSystemPath = parent;
 }
 		
 function onFailTest(){ 
-		console.log("Error message"); 
+		console.log("No Filesystem available for saving files"); 
 } 
 		 
-		console.log(localSystemPath);
+		
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
- 		console.log('pageLoaded');	
-		
-		
-		
-		var storyIter = 1,
-		storyBigIter = storyIter;
-		
-		
+ 		var storyIter = 1;	
 		// Cycle through links to ensure they have been downloaded already
 		while(storyIter <= 30){
+			
+			storyBigIter = storyIter;
 			
 			if(Number(storyBigIter) <= 9) {
 				storyBigIter = ('0'+ storyIter);
@@ -415,8 +406,9 @@ function onFailTest(){
 					storyIter++;
 				},
 				success: function()
-				{	
-					$('.gallery li a.downloadBtn[rel="story'+ storyIter +'"]').remove().parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');			
+				{
+					$('.gallery li a.downloadBtn[rel="story'+ storyIter +'"]').remove();	
+					$('.gallery li a[rel="story'+ storyIter +'"]').parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');		
 					storyIter++;
 				}
 			});
