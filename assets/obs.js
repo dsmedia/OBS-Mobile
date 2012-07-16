@@ -386,6 +386,7 @@ function onFailTest(){
 (function(window, $, PhotoSwipe){			
 	$('#Home').live('pageinit',function(event){
 		
+		pathToFiles = localSystemPath.fullPath.substr(6);
  		var storyIter = 1;	
 		// Cycle through links to ensure they have been downloaded already
 		while(storyIter <= 30){
@@ -396,13 +397,12 @@ function onFailTest(){
 				storyBigIter = ('0'+ storyIter);
 			};
 			
-			pathToFiles = localSystemPath.fullPath.substr(6);
-			
 			$.ajax({
-				url: pathToFiles +'/OBS-'+ storyBigIter +'-1.jpg',
+				url: pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg',
 				type:'GET',
 				error: function()
 				{
+					console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
 					storyIter++;
 				},
 				success: function()
@@ -477,8 +477,6 @@ function onFailTest(){
 				// Load JSON info for image URLs and images 
 				$.getJSON('assets/json/'+ storyNum +'.json', function(data) {
 					var items = [];
-					
-					pathToFiles = localSystemPath.fullPath.substr(6);
 					
 					// Loop through all image urls
 					$.each(data, function(key, val) {
