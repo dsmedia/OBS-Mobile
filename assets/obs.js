@@ -420,7 +420,7 @@ function onFailTest(){
 							downloadBtn = $('.gallery li a[data-download="download"]').attr('rel','story'+ storyIter);
 							downloadBtnParent = $(downloadBtn).parent();
 							$(downloadBtn).remove();	
-							$(downloadBtnParent).fadeIn.find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
+							$(downloadBtnParent).fadeIn().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');						
 						}
 					});
 				}  
