@@ -13,7 +13,9 @@
  * positions etc.
  */
 
- 
+body.ui-mobile-viewport {
+	position: relative;
+}
 body.ps-active, body.ps-building, div.ps-active, div.ps-building
 {
 	background: #000;
