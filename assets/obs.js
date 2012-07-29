@@ -451,7 +451,7 @@ function onFailTest(){
 			
 		
 		$('.gallery a').live('click', function(e){
-			e.preventDefault();	
+				
 			
 			var storyNum = $(this).attr('rel'),
 			storyNumber = storyNum.replace('story','');
@@ -462,7 +462,7 @@ function onFailTest(){
 			};
 			
 			if ($(this).attr('data-download') == 'download'){
-				
+				e.preventDefault();
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				localStorage.setItem(storyNum, true);
@@ -544,11 +544,11 @@ function onFailTest(){
 						);					
 						instance.show(0);
 						
-						$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
+						/*$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
 						$('.ps-toolbar-close').live('click',function(){
 							$('.ps-toolbar-close').remove();
 							document.location.href = 'index.html';
-						});
+						});*/
 					});
 				};
 			});
