@@ -411,6 +411,8 @@ function onFailTest(){
 				$('.gallery li.story'+ storyIter).fadeIn();	
 			}
 		};
+		
+		console.log(localStorage.getItem('story1'));
 			
 		/*var tid = setInterval(checkDownload, 3000);
 		
