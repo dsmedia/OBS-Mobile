@@ -402,8 +402,17 @@ function onFailTest(){
 			$('#Home h1').text(uiTrans.appTitle);
 			$('p.chooseStory').text(uiTrans.chooseStory);			
 		});		
+		
+		for(var storyIter = 1; storyIter < 31; storyIter++){
+			if(localStorage.getItem('story'+ storyIter) == true){			
+				$('.gallery li.story'+ storyIter).find('a[data-download="download"]').remove();	
+				$('.gallery li.story'+ storyIter).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');	
+			} else {
+				$('.gallery li.story'+ storyIter).fadeIn();	
+			}
+		};
 			
-		var tid = setInterval(checkDownload, 3000);
+		/*var tid = setInterval(checkDownload, 3000);
 		
 		function checkDownload() {
 			console.log('downloaded');
@@ -438,7 +447,7 @@ function onFailTest(){
 					});
 				}  
 			}
-		}
+		}*/
 		
 			
 		
@@ -457,6 +466,7 @@ function onFailTest(){
 				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
+				localStorage.setItem(storyNum, true);
 				
 				function getEmAll(storyNumber, storyBigNumber, picNumber){	
 					// file creation 
