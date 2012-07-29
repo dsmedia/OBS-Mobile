@@ -403,18 +403,16 @@ function onFailTest(){
 			$('p.chooseStory').text(uiTrans.chooseStory);			
 		});		
 		
-		for(var storyIter = 1; storyIter < 31; storyIter++){
+		/*for(var storyIter = 1; storyIter < 31; storyIter++){
 			if(localStorage.getItem('story'+ storyIter) == true){			
 				$('.gallery li.story'+ storyIter).find('a[data-download="download"]').remove();	
 				$('.gallery li.story'+ storyIter).find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');	
 			} else {
 				$('.gallery li.story'+ storyIter).fadeIn();	
 			}
-		};
-		
-		console.log(localStorage.getItem('story1'));
+		};*/
 			
-		/*var tid = setInterval(checkDownload, 3000);
+		var tid = setInterval(checkDownload, 3000);
 		
 		function checkDownload() {
 			console.log('downloaded');
@@ -438,7 +436,6 @@ function onFailTest(){
 						error: function()
 						{
 							$('.gallery li.story'+ storyIter).fadeIn();
-							console.log(pathToFiles +'/OBS-'+ storyBigIter +'-01.jpg does not exist.');
 						},
 						success: function()
 						{
@@ -449,7 +446,7 @@ function onFailTest(){
 					});
 				}  
 			}
-		}*/
+		}
 		
 			
 		
