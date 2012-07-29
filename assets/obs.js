@@ -543,8 +543,8 @@ function onFailTest(){
 							options 
 						);					
 						instance.show(0);
-						/*$('#home').hide(0);
-						$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
+						
+						/*$('.ps-caption').after('<div class="ps-toolbar-close">&nbsp;</div>');
 						$('.ps-toolbar-close').live('click',function(){
 							$('.ps-toolbar-close').remove();
 							document.location.href = 'index.html';
