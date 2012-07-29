@@ -451,7 +451,7 @@ function onFailTest(){
 			
 		
 		$('.gallery a').live('click', function(e){
-				
+			e.preventDefault();	
 			
 			var storyNum = $(this).attr('rel'),
 			storyNumber = storyNum.replace('story','');
@@ -462,7 +462,7 @@ function onFailTest(){
 			};
 			
 			if ($(this).attr('data-download') == 'download'){
-				e.preventDefault();
+				
 				$(this).parent().find('div.ui-btn-inner').append('<span class="ui-icon ui-icon-check ui-icon-shadow"> </span>');
 				$(this).fadeOut();
 				localStorage.setItem(storyNum, true);
